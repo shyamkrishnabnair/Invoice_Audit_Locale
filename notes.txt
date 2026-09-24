@@ -1,0 +1,13 @@
+docker compose up -d postgres
+
+docker compose exec postgres psql -U <user> -d <dbname>
+
+\dn -> list schemas
+
+\dt <schema_name>.* -> list tables within the schema
+
+SELECT * FROM <schema>.<tablename>;
+
+\q
+
+docker compose down 

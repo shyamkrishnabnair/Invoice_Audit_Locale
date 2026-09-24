@@ -1,0 +1,57 @@
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+.venv/
+venv/
+env/
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+# =========================
+# IDE / OS
+# =========================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Docker
+# =========================
+docker-compose.override.yml
+
+# =========================
+# Runtime application data
+# =========================
+data/incoming/*
+data/reports/*
+
+# Keep directory structure
+!data/incoming/.gitkeep
+!data/reports/.gitkeep
+
+# =========================
+# Temporary / generated files
+# =========================
+*.tmp
+*.temp
+*.swp
