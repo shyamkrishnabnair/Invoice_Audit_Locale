@@ -61,3 +61,25 @@ def create_invoice_record(file_path: str, file_checksum: str, ) -> str:
         conn.commit()
 
     return invoice_id
+
+
+def update_extraction(invoice_id: str, raw_text: str, extraction_method: str) -> None:
+
+    with get_connection() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(
+                """
+                UPDATE audit.invoice_audit 
+                SET 
+                    raw_extracted_text = %s,
+                    extraction_method = %s
+                WHERE invoice_id = %s
+                """,
+                (
+                    raw_text,
+                    extraction_method,
+                    invoice_id
+                )
+            )
+        conn.commit()
+        

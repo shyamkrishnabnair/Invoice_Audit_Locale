@@ -3,9 +3,12 @@ from pathlib import Path
 from app.audit.repository import (
     checksum_exists,
     create_invoice_record,
+    update_extraction,
 )
 from app.monitor.checksum import calculate_checksum
 from app.monitor.stability import wait_for_file_stability
+from app.extraction.pdf import extract_document
+
 
 
 def process_file(file_path: Path) -> None:
@@ -47,4 +50,16 @@ def process_file(file_path: Path) -> None:
         flush=True,
     )
 
+    text, extraction_method = extract_document(file_path)
+
+    update_extraction(
+        invoice_id,
+        text,
+        extraction_method
+    )
+
+    print(
+            f"[PROCESSOR] Invoice EXTRACTED: {invoice_id}, {extraction_method}",
+            flush=True,
+        )
     # LangGraph processing will be triggered here later.
